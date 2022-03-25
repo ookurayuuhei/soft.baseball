@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false |
+| name               | string | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+has_many :posts
+has_many :comments
 
-* Configuration
+## posts テーブル
 
-* Database creation
+| Column                 | Type     | Options      |
+| ---------------------- | -------- | ------------ |
+| team_name              | string   | null: false  |
+| sport_name_id          | integer  | null: false  |
+| date_id                | integer  | null: false  |
+| time_id                | integer  | null: false  |
+| prefecture_id          | integer  | null: false  |
+| place                  | text     | null: false  |
+| team_introduction      | text     | null: false  |
+| level                  | integer  |              |
+| user               | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+has_many :comments
+belongs_to :user
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Column                 | Type     | Options      |
+| ---------------------- | -------- | ------------ |
+| team_name              | string   | null: false  |
+| post                   | references | null: false, foreign_key: true |
+| user                   | references | null: false, foreign_key: true |
